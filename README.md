@@ -33,3 +33,15 @@ docker-compose up --build
 - Flask
 - Docker
 - Python 3.9+
+
+
+### How it works
+REQUEST
+  ↓
+ROUTES (HTTP)
+  ↓
+SERVICES (logic)
+  ↓
+SECURITY / DB / EVENTS
+  ↓
+RESPONSE
