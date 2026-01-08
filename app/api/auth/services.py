@@ -3,6 +3,7 @@
 
 from typing import Dict
 from app.core.security import hash_password, verify_password
+from app.core.jwt import create_access_token
 
 _USERS: Dict[str, str] = {}
 
@@ -13,11 +14,10 @@ class AuthService:
         if email in _USERS:
             raise ValueError("User already exists")
 
-        password_hash = hash_password(password)
-        _USERS[email] = password_hash
+        _USERS[email] = hash_password(password)
 
     @staticmethod
-    def login(email: str, password: str) -> None:
+    def login(email: str, password: str) -> str:
         if email not in _USERS:
             raise ValueError("Invalid credentials")
 
@@ -25,3 +25,6 @@ class AuthService:
 
         if not verify_password(password, password_hash):
             raise ValueError("Invalid credentials")
+
+        return create_access_token(subject=email)
+

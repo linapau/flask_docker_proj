@@ -27,12 +27,12 @@ def login():
     data = request.get_json()
 
     try:
-        AuthService.login(
+        token = AuthService.login(
             email=data["email"],
             password=data["password"],
         )
-        return jsonify({"message": "Login successful"}), 200
-
+        return jsonify({"message": "Login successful", "access_token": token}), 200
+    
     except ValueError as e:
         return jsonify({"error": str(e)}), 401
 
