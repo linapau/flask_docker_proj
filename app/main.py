@@ -1,8 +1,10 @@
-import sys
-from pathlib import Path
+# for local launching, not needed in docker
 
-if __name__ == "__main__":
-    sys.path.insert(0, str(Path(__file__).parent.parent))
+# import sys
+# from pathlib import Path
+
+# if __name__ == "__main__":
+#     sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from app import create_app
 
