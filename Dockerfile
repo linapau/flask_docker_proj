@@ -1,17 +1,15 @@
 FROM python:3.14.2-slim
 
-# # Python runtime
+# Python runtime
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# katalog roboczy w kontenerze
+# working directory in container
 WORKDIR /app
 
-# zależności
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# kod aplikacji (TYLKO app/)
 COPY app ./app
 
 EXPOSE 5000
