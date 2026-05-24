@@ -8,4 +8,4 @@ def hello():
 
 @api_bp.route("/message")
 def message():
-    return {"message": "Welcome to Flask!"}
+    return {"message": "some message!"}
