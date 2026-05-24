@@ -10,9 +10,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app ./app
+COPY . .
 
 EXPOSE 5000
 
-# start aplikacji (create_app jest w app/__init__.py)
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:create_app()"]
+# start aplikacji
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app"]
