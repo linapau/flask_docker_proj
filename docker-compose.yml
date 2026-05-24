@@ -6,6 +6,8 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - FLASK_ENV=development
+      - FLASK_ENV=production
     volumes:
       - .:/app
+
+# by default we use dockerfile's CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app"] in production, but for development we override it with python3 -m app.main in docker-compose.dev.yml

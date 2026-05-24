@@ -18,8 +18,14 @@ Simple Flask application with user login and registration functionality, contain
 
 1. Clone the repository
 2. Build and run with Docker:
+- On the production server:
 ```bash
 docker-compose up --build
+```
+
+or on the development server:
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 
 3. Access the app at `http://localhost:5000`
