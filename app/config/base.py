@@ -15,6 +15,9 @@ class BaseConfig:
     ACCESS_TOKEN_EXPIRES_MINUTES = 15
     REFRESH_TOKEN_EXPIRES_DAYS = 7
 
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
     
     # DB_HOST = os.getenv("DB_HOST", "localhost")
     # DB_NAME = os.getenv("DB_NAME", "app_db")

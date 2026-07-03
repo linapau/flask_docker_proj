@@ -18,14 +18,21 @@ Simple Flask application with user login and registration functionality, contain
 
 1. Clone the repository
 2. Build and run with Docker:
-- On the production server:
+- Production server:
+
 ```bash
-docker-compose up --build
+docker-compose \
+-f docker-compose.yml \
+-f docker-compose.prod.yml \
+up --build
 ```
 
-or on the development server:
+Development server:
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+docker-compose \
+-f docker-compose.yml \
+-f docker-compose.dev.yml \
+up --build
 ```
 
 3. Access the app at `http://localhost:5000`
@@ -36,9 +43,16 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 - Access protected routes after authentication
 
 ## Technologies
-- Flask
-- Docker
-- Python 3.9+
+- Flask 3.1.0
+- Werkzeug 3.1.0
+- Gunicorn 26.0.0
+- SQLAlchemy 2.0.41
+- Flask-SQLAlchemy 3.1.1
+- Flask-Migrate 4.1.0
+- PyJWT 2.10.1
+- Python 3.12
+- MySQL 8.4.9
+- Docker & Docker Compose
 
 
 ### How it works
