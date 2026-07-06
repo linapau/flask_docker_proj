@@ -1,0 +1,6 @@
+apiVersion: v2
+name: flaskdocker
+description: Helm chart for the Flask app and MySQL database based on docker-compose
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

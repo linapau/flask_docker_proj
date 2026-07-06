@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "flaskdocker.fullname" . }}
+  labels:
+    {{- include "flaskdocker.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "flaskdocker.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "flaskdocker.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 5000
+          env:
+            - name: FLASK_ENV
+              value: {{ .Values.app.env.FLASK_ENV | quote }}
+            - name: FLASK_DEBUG
+              value: {{ .Values.app.env.FLASK_DEBUG | quote }}
+            - name: DATABASE_URL
+              value: {{ .Values.app.databaseUrl | quote }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "flaskdocker.fullname" . }}
+  labels:
+    {{- include "flaskdocker.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "flaskdocker.selectorLabels" . | nindent 4 }}
