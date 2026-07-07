@@ -25,6 +25,8 @@ def register():
         return jsonify({"message": "User registered"}), 201
 
     except ValueError as e:
+        if "already exists" in str(e).lower():
+            return jsonify({"error": str(e)}), 409
         return jsonify({"error": str(e)}), 400
 
 
