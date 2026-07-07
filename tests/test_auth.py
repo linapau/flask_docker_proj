@@ -1,3 +1,4 @@
+# integration tests for authentication endpoints
 import pytest
 
 from app import create_app
